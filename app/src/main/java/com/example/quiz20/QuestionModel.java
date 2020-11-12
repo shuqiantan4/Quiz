@@ -1,10 +1,10 @@
 package com.example.quiz20;
 
 public class QuestionModel {
-    private String question, oA,oB,oC,oD,ans;
-    private int setNo;
+    private String question, oA, oB, oC, oD, ans;
+    //private int setNo;
 
-    public QuestionModel(){
+    public QuestionModel() {
 
     }
 
@@ -60,21 +60,22 @@ public class QuestionModel {
         this.ans = ans;
     }
 
-    public int getSetNo() {
-        return setNo;
-    }
+//    public int getSetNo() {
+//        return setNo;
+//    }
+//
+//    public void setSetNo(int setNo) {
+//        this.setNo = setNo;
+//    }
 
-    public void setSetNo(int setNo) {
-        this.setNo = setNo;
-    }
-
-    public QuestionModel(String question, String oA, String oB, String oC, String oD, String ans, int setNo) {
+    public QuestionModel(String question, String oA, String oB, String oC, String oD, String ans) {
         this.question = question;
         this.oA = oA;
         this.oB = oB;
         this.oC = oC;
         this.oD = oD;
         this.ans = ans;
-        this.setNo = setNo;
+      //  this.setNo = setNo;
     }
+
 }

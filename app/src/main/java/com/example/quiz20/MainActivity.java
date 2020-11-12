@@ -10,6 +10,7 @@ import android.widget.Button;
 public class MainActivity extends AppCompatActivity {
 
     private Button btn1;
+    private Button btn2;
 
 
     @Override
@@ -22,6 +23,15 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View v) {
                 Intent quizDash = new Intent(MainActivity.this, SetsActivity.class);
                 startActivity(quizDash);
+            }
+        });
+
+        btn2 = findViewById(R.id.bookmark);
+        btn2.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent bookmark = new Intent(MainActivity.this, BookmarkActivity.class);
+                startActivity(bookmark);
             }
         });
 

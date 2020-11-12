@@ -14,6 +14,8 @@ import android.view.animation.DecelerateInterpolator;
 import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+import android.widget.Toast;
+
 import androidx.appcompat.widget.Toolbar;
 
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
@@ -31,6 +33,7 @@ public class Detail extends AppCompatActivity {
     private List<QuestionModel> list;
     private int position = 0;
     private int score = 0;
+   // private int setNo;
 
 
 
@@ -48,25 +51,33 @@ public class Detail extends AppCompatActivity {
         previous = findViewById(R.id.btn_previous);
         next = findViewById(R.id.btn_next);
 
+        //test
+      //setNo = getIntent().getIntExtra("setNo",1);
+
 
         list = new ArrayList<>();
-        list.add(new QuestionModel("question 1","A","B","C","D","C"));
-        list.add(new QuestionModel("question 2","A","B","C","D","C"));
-        list.add(new QuestionModel("question 3","A","B","C","D","B"));
-        list.add(new QuestionModel("question 4","A","B","C","D","A"));
+        list.add(new QuestionModel("Which of the following is one of the primary benefits of eating carbs and fibre?","a) Helps with acne prevention","b) They are the body’s main source of energy","c) Promotes stronger hair and nails","d) Increase your life span","b) They are the body’s main source of energy"));
+        list.add(new QuestionModel("Which of the following is a good source of carbs and fibre?","a) Strawberries","b) Oats","c) Spinach","d) Pita bread","b) Oats"));
+        list.add(new QuestionModel("Which of the following is a good source of carbs and fibre?","a) Oranges","b) Fries","c) Chicken breast","d) Quinoa","d) Quinoa"));
+        list.add(new QuestionModel("Which of the following is not a source of carbs and fibre?","a) Brown rice","b) Bananas","c) Mushroom","d) Peas","c) Mushroom"));
+        list.add(new QuestionModel("Which of the following statements about carbs and fibre is incorrect?","a) Brown rice is a good source of carbs and fibre","b) One of primary benefits of consuming carbs and fibre is that they support healthy blood cholesterol levels","c) One of primary benefits of consuming carbs and fibre is that they boost your immunity","d) Black beans are a good source of carbs and fibre","c) One of primary benefits of consuming carbs and fibre is that they boost your immunity"));
+        list.add(new QuestionModel("Which of the following statements about carbs and fibre is correct?","a) You do not need to eat carbs and fibre everyday","b) Some of the best sources of carbs and fibre include brown rice, barley and wholewheat pasta","c) Some of the best sources of carbs and fibre include brown rice, eggs and oats","d) Carbs and fibre are not the body’s main source of energy","b) Some of the best sources of carbs and fibre include brown rice, barley and wholewheat pasta"));
+        list.add(new QuestionModel("What is not a type of carbohydrate?","a) Fat","b) Fiber","c) Starch","d) Sugar","a) Fat"));
 
 
-        for (int i = 0; i<4; i++){
-            optionsContainer.getChildAt(i).setOnClickListener(new View.OnClickListener() {
-                @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
-                @Override
-                public void onClick(View v) {
-                    checkAns((Button) v);
 
-                }
-            });
+        for (int i = 0; i < 4; i++) {
+                optionsContainer.getChildAt(i).setOnClickListener(new View.OnClickListener() {
+                    @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
+                    @Override
+                    public void onClick(View v) {
+                        checkAns((Button) v);
 
-        }
+                    }
+                });
+
+            }
+
 
         playAnim(question, 0, list.get(position).getQuestion());
         next.setOnClickListener(new View.OnClickListener() {
@@ -78,9 +89,17 @@ public class Detail extends AppCompatActivity {
                 enableOption(true);
                 position++;
                 if(position == list.size()){
-                    //score activity
+                    //Toast.makeText(this,"you have finished the quiz!", Toast.LENGTH_SHORT).show();
+                    Intent scoreIntent = new Intent(Detail.this, ScoreActivity.class);
+                    //display scores on score activity
+                    scoreIntent.putExtra("score", score);
+                    scoreIntent.putExtra("total", list.size());
+                    startActivity(scoreIntent);
+                    finish();
+
                     return;
                 }
+
                 count =0;
                 playAnim(question, 0, list.get(position).getQuestion());
             }
@@ -142,22 +161,24 @@ public class Detail extends AppCompatActivity {
                     }
                 });
     }
-        //to-be cont'd  youtube 5-B
+
         @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
         private void checkAns(Button selectedOption) {
         enableOption(false);
         next.setEnabled(true);
         next.setAlpha(1);
+        //compare ans
         if(selectedOption.getText().toString().equals(list.get(position).getAns())) {
-            //correct
+            //calculate scores (correct ans)
             score++;
-            selectedOption.setBackgroundTintList(ColorStateList.valueOf(Color.parseColor("#4caf50")));
+            selectedOption.setBackgroundTintList(ColorStateList.valueOf(Color.parseColor("#7bd47e")));
         }else {
             //incorrect
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
-                selectedOption.setBackgroundTintList(ColorStateList.valueOf(Color.parseColor("#ff0000")));
+                //wrong ANS
+                selectedOption.setBackgroundTintList(ColorStateList.valueOf(Color.parseColor("#ff5252")));
                Button correctAns = (Button) optionsContainer.findViewWithTag(list.get(position).getAns());
-               correctAns.setBackgroundTintList(ColorStateList.valueOf(Color.parseColor("#4caf50")));
+               correctAns.setBackgroundTintList(ColorStateList.valueOf(Color.parseColor("#7bd47e")));
             }
 
             }

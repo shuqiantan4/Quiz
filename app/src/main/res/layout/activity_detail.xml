@@ -48,9 +48,11 @@
             android:layout_height="wrap_content"
             android:layout_margin="16dp"
             android:background="@drawable/round"
+            android:fontFamily="sans-serif"
             android:padding="16dp"
             android:text="TextView"
-            android:textColor="@android:color/black" />
+            android:textColor="@android:color/black"
+            android:textSize="18sp" />
 
         <TextView
             android:id="@+id/tv_indicator"
@@ -83,7 +85,7 @@
             android:backgroundTint="#989898"
             android:padding="16dp"
             android:text="Button"
-            android:textColor="@android:color/black" />
+            android:textColor="#CB000000" />
 
         <Button
             android:id="@+id/button2"
@@ -94,7 +96,7 @@
             android:backgroundTint="#989898"
             android:padding="16dp"
             android:text="Button"
-            android:textColor="@android:color/black" />
+            android:textColor="#CB000000" />
 
         <Button
             android:id="@+id/button3"
@@ -105,7 +107,7 @@
             android:backgroundTint="#989898"
             android:padding="16dp"
             android:text="Button"
-            android:textColor="@android:color/black" />
+            android:textColor="#CB000000" />
 
         <Button
             android:id="@+id/button4"
@@ -116,7 +118,7 @@
             android:backgroundTint="#989898"
             android:padding="16dp"
             android:text="Button"
-            android:textColor="@android:color/black" />
+            android:textColor="#CB000000" />
     </LinearLayout>
 
     <Button
